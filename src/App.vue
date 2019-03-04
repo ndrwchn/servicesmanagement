@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <router-view />
   </div>
 </template>
@@ -14,10 +13,7 @@ export default {
 </script>
 
 <style>
-/* @import 'vuetify/disk/vuetify.min.css';
-@import 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'; */
-@import 'vuetify/disk/vuetify.min.css';
-
+/* @import 'vuetify/dist/vuetify.min.css'; */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
