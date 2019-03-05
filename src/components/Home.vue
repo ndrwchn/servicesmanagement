@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <div>
     <v-navigation-drawer
       v-model="drawer"
       :clipped="$vuetify.breakpoint.lgAndUp"
@@ -104,15 +104,14 @@
       </v-btn> -->
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
+      <v-container fluid>
+        <v-layout>
           <transactions></transactions>
         </v-layout>
       </v-container>
     </v-content>
     <edit-transaction></edit-transaction>
-
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -168,9 +167,6 @@ export default {
     showProfile: () => {
       console.log('show profile clicked!')
     }
-  },
-  props: {
-    source: String
   }
 }
 </script>

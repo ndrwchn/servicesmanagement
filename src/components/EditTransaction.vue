@@ -85,18 +85,6 @@
                         v-model="transaction.notes"
                     ></v-text-field>
                 </v-flex>
-
-                                <!-- <v-layout align-center>
-                    <v-avatar size="40px" class="mr-3">
-                    <img
-                        src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
-                        alt=""
-                    >
-                    </v-avatar>
-                    <v-text-field
-                    placeholder="Name"
-                    ></v-text-field>
-                </v-layout> -->
             </v-layout>
             </v-container>
             <v-card-actions>
