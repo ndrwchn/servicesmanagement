@@ -29,6 +29,7 @@
         item-key="_id"
       >
       <template slot="items" slot-scope="props">
+        <tr>
           <td>
             <v-edit-dialog
               lazy
@@ -48,6 +49,7 @@
           <td class="text-xs-right">{{ props.item.charge }}</td>
           <td class="text-xs-right">{{ props.item.deposit }}</td>
           <td class="text-xs-right">{{ props.item.balance }}</td>
+        </tr>
       </template>
 
       <template slot="expand" slot-scope="props">
@@ -79,7 +81,7 @@ export default {
       return this.$store.state.transactions.months
     },
     items () {
-      return this.$store.getters.getTransactionsByMonth
+      return this.$store.getters.transactionsByMonth
     },
     balanceCharges () {
       return this.$store.getters.balanceCharges
@@ -111,7 +113,12 @@ export default {
       this.$store.dispatch('getPreviousMonthsBalances')
     },
     gotoMonth: function (increment) {
-      this.$store.dispatch('gotoMonth').then(() => {
+      // console.log('Gotomonth first call in vue: ', increment)
+      const payload = {
+        currentMonth: this.currentMonth,
+        increment: increment
+      }
+      this.$store.dispatch('gotoMonth', payload).then(() => {
         // Load selected month transaction data now...
         this.getPreviousMonthsBalances()
         this.getTransactionsByMonth()

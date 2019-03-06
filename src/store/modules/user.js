@@ -19,7 +19,7 @@ const actions = {
       .then((resp) => {
         let data = resp.data
         if (data && data.length > 0) {
-          // test password entered in payload against user object
+          // Test password entered (payload) against user object
           if (data[0].password === payload.password) {
             payload.userId = data[0]._id
             commit('logInUser', payload)
@@ -36,9 +36,9 @@ const actions = {
 
 const mutations = {
   logInUser (state, payload) {
+    state.isLoggedIn = true
     state.email = payload.email
     state.userId = payload.userId
-    state.isLoggedIn = true
   },
   loginError (state) {
     state.isLoggedIn = false

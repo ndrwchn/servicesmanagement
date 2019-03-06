@@ -1,10 +1,11 @@
 <template>
   <div>
-    <navigation-drawer></navigation-drawer>
+    <navigation-drawer>
+    </navigation-drawer>
     <v-content>
       <v-container fluid>
         <v-layout>
-          <transactions></transactions>
+            <transactions></transactions>
         </v-layout>
       </v-container>
     </v-content>
@@ -29,11 +30,13 @@ export default {
       return this.$store.getters.isLoggedIn
     }
   },
-  data: () => ({
-    dialog: false
-  }),
   methods: {
-
+    menuAction: function () {
+      // TODO
+    },
+    showProfile: function () {
+      console.log('show profile clicked!')
+    }
   },
   mounted: function () {
     console.log('Is user logged in? ', this.isLoggedIn)
@@ -43,8 +46,3 @@ export default {
   }
 }
 </script>
-<style>
-  .v-content {
-      padding-top: 10px;
-  }
-</style>
