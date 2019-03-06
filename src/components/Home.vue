@@ -23,13 +23,23 @@ export default {
     Transactions,
     EditTransaction,
     NavigationDrawer
-
+  },
+  computed: {
+    isLoggedIn () {
+      return this.$store.getters.isLoggedIn
+    }
   },
   data: () => ({
     dialog: false
   }),
   methods: {
 
+  },
+  mounted: function ()  {
+    console.log('Is user logged in? ', this.isLoggedIn)
+    if (!this.isLoggedIn) {
+      this.$router.push({ path: '/login' })
+    }
   }
 }
 </script>
