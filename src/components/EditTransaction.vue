@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-layout>
         <v-btn
         fab
         bottom
@@ -54,7 +54,6 @@
                         v-model="transaction.transactionType"
                         label="Transaction Type"
                         single-line
-                        bottom
                     ></v-select>
                 </v-flex>
                 <v-flex xs12>
@@ -95,7 +94,7 @@
             </v-card-actions>
         </v-card>
         </v-dialog>
-    </div>
+    </v-layout>
 </template>
 
 <script>

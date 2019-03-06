@@ -29,7 +29,6 @@
         item-key="_id"
       >
       <template slot="items" slot-scope="props">
-        <tr>
           <td>
             <v-edit-dialog
               lazy
@@ -49,7 +48,6 @@
           <td class="text-xs-right">{{ props.item.charge }}</td>
           <td class="text-xs-right">{{ props.item.deposit }}</td>
           <td class="text-xs-right">{{ props.item.balance }}</td>
-        </tr>
       </template>
 
       <template slot="expand" slot-scope="props">
