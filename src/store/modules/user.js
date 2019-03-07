@@ -2,6 +2,8 @@ import Vue from 'vue'
 
 const state = {
   email: '',
+  first: '',
+  last: '',
   userId: null,
   isLoggedIn: false,
   loginError: ''
@@ -21,7 +23,11 @@ const actions = {
         if (data && data.length > 0) {
           // Test password entered (payload) against user object
           if (data[0].password === payload.password) {
-            payload.userId = data[0]._id
+            const user = data[0]
+            payload.userId = user._id
+            payload.first = user.first
+            payload.last = user.last
+            payload.email = user.email
             commit('logInUser', payload)
           } else {
             commit('loginError')
@@ -31,6 +37,29 @@ const actions = {
       .catch(() => {
         commit('loginError')
       })
+  },
+  async loadUserProfile ({ commit }) {
+    // get the user object for the currently logged in user...
+    await Vue.axios.get('/user/' + this.userId)
+      .then((resp) => {
+        let data = resp.data
+        console.log('loadUserProfile data: ', data)
+      })
+  },
+  updateUserProfile ({ commit }, payload) {
+    // TODO encrypt user's password
+    Vue.axios.put('/user/' + this.state.user.userId, payload)
+      .then((resp) => {
+        console.log(resp)
+      })
+      .catch((err) => {
+        console.log('Error to update user profile: ', err)
+      })
+  },
+
+  logOut ({ commit, state }, payload) {
+    this.state.isLoggedIn = false
+    this.state.loginError = 'Thanks for using research portal. '
   }
 }
 
@@ -39,6 +68,8 @@ const mutations = {
     state.isLoggedIn = true
     state.email = payload.email
     state.userId = payload.userId
+    state.last = payload.last
+    state.first = payload.first
   },
   loginError (state) {
     state.isLoggedIn = false

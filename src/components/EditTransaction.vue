@@ -87,7 +87,6 @@
             </v-layout>
             </v-container>
             <v-card-actions>
-            <v-btn flat color="primary">More</v-btn>
             <v-spacer></v-spacer>
             <v-btn flat color="primary" @click="dialog = false">Cancel</v-btn>
             <v-btn flat @click="saveTransaction">Save</v-btn>

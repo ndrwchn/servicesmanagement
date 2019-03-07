@@ -5,7 +5,7 @@
     <v-content>
       <v-container fluid>
         <v-layout>
-            <transactions></transactions>
+            <transactions v-if="this.$store.getters.isLoggedIn"></transactions>
         </v-layout>
       </v-container>
     </v-content>
