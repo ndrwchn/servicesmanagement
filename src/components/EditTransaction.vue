@@ -7,7 +7,7 @@
         color="pink"
         dark
         fixed
-        @click="dialog = !dialog"
+        @click.stop="showEditTransactionDialog"
         >
         <v-icon>add</v-icon>
         </v-btn>
@@ -123,6 +123,7 @@ export default {
     saveTransaction: function () {
       console.log('Saving transaction record:')
       // TODO: wire up Vuex action
+      this.$store.dispatch('saveTransaction', this.transaction)
 
       this.dialog = false
     },

@@ -73,6 +73,21 @@ const actions = {
   },
   async gotoCurrentMonth ({ commit }) {
     commit('gotoCurrentMonth')
+  },
+  saveTransaction ({ commit, dispatch, state, rootState }, transaction) {
+    // add the logged in userId to the transaction payload...
+    transaction.userId = rootState.user.userId
+
+    Vue.axios.post('/transaction', transaction)
+      .then((resp) => {
+        dispatch('getTransactionsByMonth').then(() => {
+          dispatch('getPreviousMonthsBalances')
+        })
+      })
+      .catch((err) => {
+        console.log('Error saving transaction.')
+        console.log(err)
+      })
   }
 }
 
@@ -129,7 +144,8 @@ function mapTransaction (tx, state) {
     description: tx.description,
     charge: moneyFormatter(tx.charge),
     deposit: moneyFormatter(tx.deposit),
-    balance: moneyFormatter(calcRunningBalance(tx, state))
+    balance: moneyFormatter(calcRunningBalance(tx, state)),
+    notes: tx.notes
   }
   return transaction
 }
