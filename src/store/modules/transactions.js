@@ -26,7 +26,7 @@ const state = {
 const getters = {
   transactionsByMonth: state => state.transactions,
   balanceCharges: state => state.balanceCharges,
-  balanceDeposits: state => state.balanceCharges
+  balanceDeposits: state => state.balanceDeposits
 }
 
 const actions = {
@@ -125,6 +125,7 @@ function mapTransaction (tx, state) {
   let transaction = {
     transactionDate: months[transDate.getUTCMonth() + 1].abrev + '-' + transDate.getUTCDate(),
     transactionType: tx.transactionType,
+    _id: tx._id,
     description: tx.description,
     charge: moneyFormatter(tx.charge),
     deposit: moneyFormatter(tx.deposit),
