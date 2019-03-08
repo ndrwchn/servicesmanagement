@@ -39,6 +39,15 @@
                 </v-list-tile-content>
               </v-list-tile>
             </template>
+            <!-- <v-list-group
+              sub-group
+              no-action
+            >
+            <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title>Admin</v-list-tile-title>
+            </v-list-tile>
+          </template> -->
             <v-list-tile
               v-for="(child, i) in item.children"
               :key="i"
@@ -47,12 +56,13 @@
               <v-list-tile-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-tile-action>
-              <v-list-tile-content>
+              <v-list-tile-content >
                 <v-list-tile-title>
                   {{ child.text }}
                 </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
+            <!-- </v-list-group> -->
           </v-list-group>
           <v-list-tile v-else :key="item.text" @click="menuAction" >
             <v-list-tile-action>
@@ -105,28 +115,31 @@ export default {
       { icon: 'contacts', text: 'Add Transaction' },
       { icon: 'history', text: 'Current Month' },
       { icon: 'content_copy', text: 'Notes' },
-      //   {
-      //     icon: 'keyboard_arrow_up',
-      //     'icon-alt': 'keyboard_arrow_down',
-      //     text: 'Labels',
-      //     model: true,
-      //     children: [
-      //       { icon: 'add', text: 'Create label' }
-      //     ]
-      //   },
-      //   {
-      //     icon: 'keyboard_arrow_up',
-      //     'icon-alt': 'keyboard_arrow_down',
-      //     text: 'More',
-      //     model: false,
-      //     children: [
-      //       { text: 'Import' },
-      //       { text: 'Export' },
-      //       { text: 'Print' },
-      //       { text: 'Undo changes' },
-      //       { text: 'Other contacts' }
-      //     ]
-      //   },
+        // {
+        //   icon: 'keyboard_arrow_up',
+        //   'icon-alt': 'keyboard_arrow_down',
+        //   text: 'Labels',
+        //   model: true,
+        //   children: [
+        //     { icon: 'add', text: 'Create label' }
+        //   ]
+        // },
+        {
+          icon: 'keyboard_arrow_up',
+          'icon-alt': 'keyboard_arrow_down',
+          text: 'Authority Tables',
+          model: false,
+          children: [
+            { text: 'Staff' },
+            { text: 'User' },
+            { text: 'Database' },
+            { text: 'Research Type' },
+            { text: 'Services Type' },
+            { text: 'Status' },
+            { text: 'Priority' },
+            { text: 'Complexity' }
+          ]
+        },
       { icon: 'settings', text: 'Settings' },
       { icon: 'chat_bubble', text: 'Send feedback' },
       { icon: 'help', text: 'Help' },

@@ -76,7 +76,7 @@ export default {
     ...mapState({
       months: state => state.transactions.months,
       currentMonth: state => state.transactions.currentMonth,
-      currentYear: state => state.transactions.currentYear,
+      currentYear: state => state.transactions.currentYear
     }),
     ...mapGetters({
       items: 'transactionsByMonth',
