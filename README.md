@@ -1,4 +1,5 @@
 # client
+It's using vuejs, vue-cli, vuetify and vuex. Vuetify is great tool to handle all layout, theme etc UI. Vuex plays the role to control state.
 
 ## Project setup
 ```
