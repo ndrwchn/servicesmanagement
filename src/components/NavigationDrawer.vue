@@ -48,15 +48,17 @@
               <v-list-tile-title>Admin</v-list-tile-title>
             </v-list-tile>
           </template> -->
-            <v-list-tile
+            <v-list-tile 
               v-for="(child, i) in item.children"
               :key="i"
               @click="menuAction"
+              class="pl-4 ml-4"
             >
               <v-list-tile-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-tile-action>
-              <v-list-tile-content >
+              <v-list-tile-content
+              >
                 <v-list-tile-title>
                   {{ child.text }}
                 </v-list-tile-title>
@@ -130,21 +132,21 @@ export default {
           text: 'Authority Tables',
           model: false,
           children: [
-            { text: 'Staff' },
-            { text: 'User' },
-            { text: 'Database' },
-            { text: 'Research Type' },
-            { text: 'Services Type' },
-            { text: 'Status' },
-            { text: 'Priority' },
-            { text: 'Complexity' }
+            {icon: 'dns', text: 'Staff' },
+            {icon: 'dns', text: 'User' },
+            {icon: 'dns', text: 'Database' },
+            {icon: 'dns', text: 'Research Type' },
+            {icon: 'dns', text: 'Services Type' },
+            {icon: 'dns', text: 'Status' },
+            {icon: 'dns', text: 'Priority' },
+            {icon: 'dns', text: 'Complexity' }
           ]
         },
-      { icon: 'settings', text: 'Settings' },
-      { icon: 'chat_bubble', text: 'Send feedback' },
-      { icon: 'help', text: 'Help' },
-      { icon: 'phonelink', text: 'LibGuide' },
-      { icon: 'keyboard', text: 'Edit eNews' }
+      { icon: 'settings', text: 'Settings' }
+      // { icon: 'chat_bubble', text: 'Send feedback' },
+      // { icon: 'help', text: 'Help' },
+      // { icon: 'phonelink', text: 'LibGuide' },
+      // { icon: 'keyboard', text: 'Edit eNews' }
     ]
   }),
   methods: {
