@@ -2,7 +2,7 @@
   <v-card style="width: 100%;">
     <v-card-title>
       <span class="pr-3">
-        Transactions for {{ months[currentMonth].name }} - {{ currentYear }}
+        CMM for {{ months[currentMonth].name }} - {{ currentYear }}
       </span>
       <v-btn flat icon class="pr-2" v-on:click="gotoMonth(-1)">
         <v-icon>keyboard_arrow_left</v-icon>
@@ -42,7 +42,7 @@
               ></v-text-field>
             </v-edit-dialog>
           </td>
-          <td class="text-xs-left">{{ props.item.transactionType }}</td>
+          <td class="text-xs-left">{{ props.item.researchType }}</td>
           <td class="text-xs-left" @click="props.expanded = !props.expanded">
             {{ props.item.description }}
           </td>
@@ -83,6 +83,7 @@ export default {
       balanceCharges: 'balanceCharges',
       balanceDeposits: 'balanceDeposits'
     })
+    // mapgetters() replace the following fuctions:
     // currentMonth () {
     //   return this.$store.state.transactions.currentMonth
     // },
@@ -109,7 +110,7 @@ export default {
       pagination: {},
       headers: [
         { text: 'Date', align: 'center', sortable: false, value: 'date' },
-        { text: 'Type', align: 'center', sortable: false, value: 'type' },
+        { text: 'Research Type', align: 'center', sortable: false, value: 'researchtype' },
         { text: 'Description', align: 'center', sortable: false, value: 'description' },
         { text: 'Charge (-)', align: 'center', sortable: false, value: 'paymentAmt' },
         { text: 'Deposit (+)', align: 'center', sortable: false, value: 'depositAmt' },

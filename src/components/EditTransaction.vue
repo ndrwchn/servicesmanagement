@@ -97,8 +97,16 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
+
+
 export default {
   name: 'EditTransaction',
+  computed: {
+    ...mapGetters({
+      researchtypes: 'researchTypes'
+    })
+  },
   data: () => ({
     dialog: false,
     transaction: {
@@ -140,8 +148,14 @@ export default {
       if (day.length < 2) day = '0' + day
 
       return [year, month, day].join('-')
-    }
-  }
+    },
+    getResearchTypes: function () {
+      this.$store.dispatch('getResearchTypes')}
+  },
+  mounted: async function () {
+    await this.getResearchTypes()
+
+  },
 }
 </script>
 
