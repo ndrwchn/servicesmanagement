@@ -48,11 +48,21 @@
                 </v-menu>
                 </v-flex>
                 <v-flex xs12>
-                    <v-select
+                    <!-- <v-select
                         prepend-icon="credit_card"
                         v-bind:items="transactionTypes"
                         v-model="transaction.transactionType"
                         label="Transaction Type"
+                        single-line
+                    ></v-select> -->
+                    <v-select
+                        prepend-icon="credit_card"
+                        v-bind:items="researchTypes"
+                        name="researchType"
+                        v-model="transaction.researchType"
+                        item-text="researchType"
+                        item-value="_id"
+                        label="Research Type"
                         single-line
                     ></v-select>
                 </v-flex>
@@ -104,7 +114,7 @@ export default {
   name: 'EditTransaction',
   computed: {
     ...mapGetters({
-      researchtypes: 'researchTypes'
+      researchTypes: 'researchTypes'
     })
   },
   data: () => ({
@@ -113,6 +123,7 @@ export default {
       id: null,
       transactionDate: null,
       transactionType: null,
+      researchType: null,
       description: '',
       notes: '',
       charge: 0.0,
