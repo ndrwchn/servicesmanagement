@@ -23,7 +23,6 @@ const state = {
   currentMonth: nowcurrentMonth,
   currentYear: nowcurrentYear,
   transactions: [],
-  researchTypes: [],
   balanceCharges: 0,
   balanceDeposits: 0
 }
@@ -31,8 +30,7 @@ const state = {
 const getters = {
   transactionsByMonth: state => state.transactions,
   balanceCharges: state => state.balanceCharges,
-  balanceDeposits: state => state.balanceDeposits,
-  researchTypes: state => state.researchTypes
+  balanceDeposits: state => state.balanceDeposits
 }
 
 const actions = {
@@ -51,23 +49,6 @@ const actions = {
       })
       .catch((err) => {
         console.log('Darn! There was an error getting transactions by month: ' + err)
-      })
-  },
-
-  getResearchTypes ({ commit, state, rootState }, payload) {
-    console.log('Payload in researchTypes : ', payload)
-
-    // Make API call... Pass in selected Month and Year + UserId in hearder...
-    // Once transaction data is retrieved... commit the mutation to update state...
-    Vue.axios.get('/researchtypes/')
-      .then((resp) => {
-        let data = resp.data
-        if (data && data.length > 0) {
-          commit('researchTypes', data)
-        }
-      })
-      .catch((err) => {
-        console.log('Darn! There was an error getting researchtypes: ' + err)
       })
   },
 
@@ -127,17 +108,7 @@ const mutations = {
     }
     console.log('Transactions by month mutated: ', state.transactions)
   },
-  researchTypes (state, data) {
-    // Start by clearing the array...
-    state.researchTypes = []
 
-    if (data && data.length > 0) {
-      data.forEach(tx => {
-        state.researchTypes.push(mapResearchType(tx, state))
-      })
-    }
-    console.log('Transactions by month mutated: ', state.transactions)
-  },
   balanceCharges (state, data) {
     state.balanceCharges = data
   },
@@ -168,13 +139,7 @@ const mutations = {
 }
 
 // Helper functions section ------------------------------
-function mapResearchType (tx, state) {
-  let researchtype = {
-    _id: tx._id,
-    researchType: tx.researchType
-  }
-  return researchtype
-}
+
 function mapTransaction (tx, state) {
   const transDate = new Date(tx.transactionDate)
   const months = state.months
