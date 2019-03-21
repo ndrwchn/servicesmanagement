@@ -26,7 +26,7 @@ export default {
     NavigationDrawer
   },
   computed: {
-    isLoggedIn () {
+    isLoggedIn: function () {
       return this.$store.getters.isLoggedIn
     }
   },

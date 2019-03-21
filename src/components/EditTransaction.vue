@@ -20,7 +20,7 @@
             </v-card-title>
             <v-container grid-list-sm class="pa-4">
             <v-layout row wrap>
-                <v-flex xs12 align-center justify-space-between>
+                <v-flex xs6 align-center justify-space-between>
                 <v-menu
                     ref="datePicker"
                     lazy
@@ -35,7 +35,7 @@
                     >
                     <v-text-field
                       slot="activator"
-                      lable="Select Transaction Date"
+                      lable="Select Research Date"
                       v-model="transaction.transactionDate"
                       prepend-icon="event"
                       readonly
@@ -47,7 +47,7 @@
                     </v-date-picker>
                 </v-menu>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs6>
                     <!-- <v-select
                         prepend-icon="credit_card"
                         v-bind:items="transactionTypes"
@@ -94,6 +94,17 @@
                         v-model="transaction.notes"
                     ></v-text-field>
                 </v-flex>
+                <v-flex xs10 offset-(size)(0-12)="1" >
+                    <v-text-field
+                        prepend-icon="share"
+                        placeholder="Weblinks"
+                        v-for="weblink in transaction.weblinks"
+                        :key="weblink.value"
+                        append-outer-icon="add"
+                        type="text"
+                        @click:append-outer="addItem"
+                    ></v-text-field>
+                </v-flex>
             </v-layout>
             </v-container>
             <v-card-actions>
@@ -115,7 +126,7 @@ export default {
   computed: {
     ...mapGetters({
       researchTypes: 'researchTypes'
-    })
+    }),
   },
   data: () => ({
     dialog: false,
@@ -127,7 +138,12 @@ export default {
       description: '',
       notes: '',
       charge: 0.0,
-      deposit: 0.0
+      deposit: 0.0,
+      weblinks: [
+            {
+            "value": "  "
+            }
+      ]
     },
     transactionTypes: [
       { text: 'Credit card', value: 'Credit card' },
@@ -135,9 +151,20 @@ export default {
       { text: 'Check', value: 'Check' },
       { text: 'Deposit', value: 'Deposit' }
     ],
-    transactionDatePicker: false
+    transactionDatePicker: false,
+    emptyitem: 0
   }),
   methods: {
+    addItem: function (){
+      // TODO: add weblink
+      console.log('you click me to add weblink. ', this)
+      this.emptyitem += 1
+      this.transaction.weblinks.push({ "value" : ""})
+    },
+
+    removeItem: function (){
+      // TODO
+    },
     saveTransaction: function () {
       console.log('Saving transaction record:')
       // TODO: wire up Vuex action
@@ -152,7 +179,8 @@ export default {
     getCurrentDate: function () {
       const dt = new Date(Date.now())
       let month = '' + (dt.getMonth() + 1)
-      let day = '' + (dt.getDay())
+      let day = '' + (dt.getDate())
+      console.log('day: ', dt)
       let year = dt.getFullYear()
 
       if (month.length < 2) month = '0' + month
@@ -166,7 +194,7 @@ export default {
   mounted: async function () {
     await this.getResearchTypes()
 
-  },
+  }
 }
 </script>
 
