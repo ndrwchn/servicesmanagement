@@ -73,7 +73,7 @@
                         v-model="transaction.description"
                     ></v-text-field>
                 </v-flex>
-                <v-flex xs6>
+                <!-- <v-flex xs6>
                     <v-text-field
                         prepend-icon="remove_circle"
                         placeholder="Charge (-)"
@@ -86,7 +86,7 @@
                         placeholder="Deposit (+)"
                         v-model="transaction.deposit"
                     ></v-text-field>
-                </v-flex>
+                </v-flex> -->
                 <v-flex xs12>
                     <v-text-field
                         prepend-icon="message"
@@ -102,7 +102,7 @@
                         :key="weblink.value"
                         append-outer-icon="add"
                         type="text"
-                        @click:append-outer="addItem"
+                        @click:append-outer="addItem(weblink.value)"
                     ></v-text-field>
                 </v-flex>
             </v-layout>
@@ -155,9 +155,9 @@ export default {
     emptyitem: 0
   }),
   methods: {
-    addItem: function (){
+    addItem: function ( item ){
       // TODO: add weblink
-      console.log('you click me to add weblink. ', this)
+      console.log('you click me to add weblink. ', item)
       this.emptyitem += 1
       this.transaction.weblinks.push({ "value" : ""})
     },
